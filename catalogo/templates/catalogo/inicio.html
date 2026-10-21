@@ -1,0 +1,42 @@
+{% extends "catalogo/base.html" %}
+
+{% block title %}Início | {{ nome_academia }}{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <p class="eyebrow">Movimento faz bem</p>
+    <h1>{{ nome_academia }}</h1>
+    <p>Encontre a atividade ideal para você e confira os horários das nossas turmas.</p>
+    <a class="button" href="{% url 'catalogo:turmas' %}">Ver grade da semana</a>
+</section>
+
+<section class="section">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Encontre seu ritmo</p>
+            <h2>Nossas modalidades</h2>
+        </div>
+    </div>
+    <div class="cards">
+        {% for modalidade in modalidades %}
+            <article class="card">
+                <h3>{{ modalidade.nome }}</h3>
+                <p>{{ modalidade.descricao|default:"Consulte a recepção para saber mais."|linebreaksbr }}</p>
+            </article>
+        {% empty %}
+            <p class="empty-state">Ainda não há modalidades ativas cadastradas.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="contact">
+    <div>
+        <p class="eyebrow">Venha nos conhecer</p>
+        <h2>Estamos em Caruaru</h2>
+    </div>
+    <dl>
+        <div><dt>Endereço</dt><dd>{{ endereco_academia }}</dd></div>
+        <div><dt>Telefone</dt><dd>{{ telefone_academia }}</dd></div>
+    </dl>
+</section>
+{% endblock %}

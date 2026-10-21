@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Modalidades e grade semanal da Academia Corpo em Movimento, em Caruaru.">
+    <title>{% block title %}Academia Corpo em Movimento{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'catalogo/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{% url 'catalogo:inicio' %}">Corpo <span>em Movimento</span></a>
+        <nav aria-label="Navegação principal">
+            <a href="{% url 'catalogo:inicio' %}">Início</a>
+            <a href="{% url 'catalogo:turmas' %}">Grade de turmas</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>Academia Corpo em Movimento · Caruaru, PE</p>
+    </footer>
+</body>
+</html>

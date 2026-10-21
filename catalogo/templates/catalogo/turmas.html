@@ -1,0 +1,40 @@
+{% extends "catalogo/base.html" %}
+
+{% block title %}Grade de turmas | Academia Corpo em Movimento{% endblock %}
+
+{% block content %}
+<section class="page-intro">
+    <p class="eyebrow">Organize sua semana</p>
+    <h1>Grade de turmas</h1>
+    <p>Confira os horários, instrutores e vagas disponíveis.</p>
+</section>
+
+<section class="section">
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Modalidade</th>
+                    <th scope="col">Dia</th>
+                    <th scope="col">Horário</th>
+                    <th scope="col">Instrutor</th>
+                    <th scope="col">Vagas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for turma in turmas %}
+                    <tr>
+                        <td data-label="Modalidade">{{ turma.modalidade.nome }}</td>
+                        <td data-label="Dia">{{ turma.get_dia_semana_display }}</td>
+                        <td data-label="Horário">{{ turma.horario|time:"H:i" }}</td>
+                        <td data-label="Instrutor">{{ turma.instrutor }}</td>
+                        <td data-label="Vagas">{{ turma.vagas }}</td>
+                    </tr>
+                {% empty %}
+                    <tr><td class="empty-state" colspan="5">Ainda não há turmas cadastradas.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
